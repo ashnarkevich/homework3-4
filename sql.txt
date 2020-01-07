@@ -1,0 +1,13 @@
+CREATE DATABASE `jd2_homework3-4`;
+USE `jd2_homework3-4`;
+CREATE TABLE film(id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(60) NOT NULL, duration INT NOT NULL, cost INT NOT NULL);
+INSERT INTO film (name, duration, cost) VALUES('film1', 60, 50);
+INSERT INTO film (name, duration, cost) VALUES('film2', 90, 25);
+INSERT INTO film (name, duration, cost) VALUES('film3', 120, 15);
+INSERT INTO film (name, duration, cost) VALUES('film4', 90, 45);
+INSERT INTO film (name, duration, cost) VALUES('film5', 60, 35);
+SELECT max(cost) FROM film;
+DELETE FROM film WHERE cost = (SELECT min(cost) FROM (SELECT cost FROM film) AS film_clone);
+UPDATE film SET name = "Hot film!" WHERE cost = (SELECT max(cost) FROM (SELECT cost FROM film) AS film_clone);
+DROP TABLE film;
+DROP DATABASE `jd2_homework3-4`;
